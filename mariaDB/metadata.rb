@@ -1,6 +1,6 @@
 name 'mariaDB'
-maintainer 'The Authors'
-maintainer_email 'you@example.com'
+maintainer 'Dave Bartlett'
+maintainer_email 'Dave@example.com'
 license 'All Rights Reserved'
 description 'Installs/Configures mariaDB'
 long_description 'Installs/Configures mariaDB'
