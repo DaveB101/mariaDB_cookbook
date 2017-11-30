@@ -1,4 +1,6 @@
 # mariaDB
 
-TODO: Enter the cookbook description here.
+Cookbook to deploy MariaDB on Ubuntu
+
+# tested with Ubuntu 16.04
 
