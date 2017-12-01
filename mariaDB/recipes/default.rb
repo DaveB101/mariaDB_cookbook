@@ -9,7 +9,20 @@ execute "update-upgrade" do
         action :run
 end
 
-package "mariadb-server"
+# Install MariaDB Server
+package "mariadb-server" do
+	action :install
+end
+
+# Update main MariaDB Server configuration file using Chef template file
+template "/etc/mysql/mariadb.conf.d/50-server.cnf" do
+	source "50-server.cnf.erb"
+	owner "root"
+	group "root"
+	mode 0644
+	variables(:allow_override => "All")
+	notifies :restart, "service[mysql]"
+end
 
 # Start mariadb service
 service "mysql" do
@@ -17,8 +30,12 @@ service "mysql" do
   action [ :start,  :enable]
 end
 
-package "expect"
+# Install expect utility
+package "expect" do
+	action :install
+end
 
+# Run command to configure MariaDB security settings post installation
 bash "mysql_secure_installation" do
   user "root"
   code <<-EOF
@@ -26,18 +43,18 @@ bash "mysql_secure_installation" do
   expect "Enter current password for root (enter for none):"
   send  "\r"
   expect "Change root password?"
-  send "y\n"
+  send "y"
   expect "New password:"
-  send "root\n"
+  send "secret"
   expect "Re-enter new password:"
-  send "root\n"
+  send "secret"
   expect "Remove anonymous users?"
-  send "y\n"
+  send "y"
   expect "Disallow root login remotely?"
-  send "y\n"
+  send "y"
   expect "Remove test database and access to it?"
-  send "y\n"
+  send "y"
   expect "Reload privilege tables now?"
-  send "y\n" eof'
+  send "y" eof'
   EOF
 end
