@@ -7,3 +7,4 @@ long_description 'Installs/Configures mariaDB'
 version '0.2.0'
 source_url 'https://github.com/DaveB101/mariaDB_cookbook'
 chef_version '>= 12.1' if respond_to?(:chef_version)
+supports 'ubuntu'
