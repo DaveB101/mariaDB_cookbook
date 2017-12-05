@@ -15,8 +15,8 @@
 # * Basic Settings
 #
 user		= <%= node['mariadb']['mysqld']['user'] %>
-pid-file	= <%= node['mariadb']['mysqld']['pid_file'] %> 
-socket		= <%= node['mariadb']['mysqld']['socket'] %> 
+pid-file	= /var/run/mqsqld/mysqld.pid
+socket		= /var/run/mqsqld/mysqld.sock
 port		= <%= node['mariadb']['mysqld']['port'] %> 
 basedir		= <%= node['mariadb']['mysqld']['basedir'] %> 
 datadir		= <%= node['mariadb']['mysqld']['datadir'] %> 
