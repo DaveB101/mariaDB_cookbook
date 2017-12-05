@@ -14,15 +14,17 @@
 #
 # * Basic Settings
 #
-user		= mysql
-pid-file	= /var/run/mysqld/mysqld.pid
-socket		= /var/run/mysqld/mysqld.sock
-port		= 3306
-basedir		= /usr
-datadir		= /var/lib/mysql
-tmpdir		= /tmp
-lc-messages-dir	= /usr/share/mysql
+user		= <%= node['mariadb']['mysqld']['user'] %>
+pid-file	= <%= node['mariadb']['mysqld']['pid_file'] %> 
+socket		= <%= node['mariadb']['mysqld']['socket'] %> 
+port		= <%= node['mariadb']['mysqld']['port'] %> 
+basedir		= <%= node['mariadb']['mysqld']['basedir'] %> 
+datadir		= <%= node['mariadb']['mysqld']['datadir'] %> 
+tmpdir		= <%= node['mariadb']['mysqld']['tmpdir'] %> 
+lc-messages-dir	= <%= node['mariadb']['mysqld']['lc_messages_dir'] %> 
+<% if node['mariadb']['mysqld']['skip_external_locking'] == 'true' -%>
 skip-external-locking
+<% end -%>
 
 # Instead of skip-networking the default is now to listen only on
 # localhost which is more compatible and is not less secure.
