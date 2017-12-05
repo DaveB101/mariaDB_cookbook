@@ -30,31 +30,34 @@ service "mysql" do
   action [ :start,  :enable]
 end
 
+# commented out following sections due to lack of elegance
 # Install expect utility
-package "expect" do
-	action :install
-end
+
+# package "expect" do
+#	action :install
+# end
 
 # Run command to configure MariaDB security settings post installation
-bash "mysql_secure_installation" do
-  user "root"
-  code <<-EOF
-  /usr/bin/expect -c 'spawn /usr/bin/mysql_secure_installation
-  expect "Enter current password for root (enter for none):"
-  send  "\r"
-  expect "Change root password?"
-  send "y"
-  expect "New password:"
-  send "secret"
-  expect "Re-enter new password:"
-  send "secret"
-  expect "Remove anonymous users?"
-  send "y"
-  expect "Disallow root login remotely?"
-  send "y"
-  expect "Remove test database and access to it?"
-  send "y"
-  expect "Reload privilege tables now?"
-  send "y" eof'
-  EOF
-end
+
+# bash "mysql_secure_installation" do
+#  user "root"
+#  code <<-EOF
+#  /usr/bin/expect -c 'spawn /usr/bin/mysql_secure_installation
+#  expect "Enter current password for root (enter for none):"
+#  send  "\r"
+#  expect "Change root password?"
+#  send "y"
+#  expect "New password:"
+#  send "secret"
+#  expect "Re-enter new password:"
+#  send "secret"
+#  expect "Remove anonymous users?"
+#  send "y"
+#  expect "Disallow root login remotely?"
+#  send "y"
+#  expect "Remove test database and access to it?"
+#  send "y"
+#  expect "Reload privilege tables now?"
+#  send "y" eof'
+#  EOF
+# end
